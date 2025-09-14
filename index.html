@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seguimiento de Clientes</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#f4f4f9"/>
+</head>
+<body>
+
+    <div class="main-container">
+        <header>
+            <h1>Seguimiento de clientes</h1>
+        </header>
+
+        <div class="controls">
+            <button id="add-client-btn" class="btn btn-primary">Agregar cliente</button>
+            <input type="text" id="search-input" placeholder="Buscar cliente..." class="hidden">
+            <button id="search-btn" class="btn btn-secondary">Buscar</button>
+            <button id="refresh-btn" class="btn btn-secondary">Refrescar</button>
+        </div>
+
+        <main id="client-list"></main>
+    </div>
+
+    <!-- Modals -->
+    <div id="user-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3>Bienvenido</h3>
+            <p>Por favor, introduce tu nombre para continuar.</p>
+            <input type="text" id="username-input" placeholder="Nombre de usuario">
+            <div class="modal-buttons" style="justify-content: flex-end;">
+                <button id="confirm-user-btn" class="btn btn-primary">Aceptar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="add-client-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3>Agregar Nuevo Cliente</h3>
+            <input type="text" id="new-client-name" placeholder="Nombre del cliente">
+            <div class="modal-buttons">
+                <button id="cancel-add-client" class="btn btn-secondary">Cancelar</button>
+                <button id="confirm-add-client" class="btn btn-primary">Aceptar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="transaction-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3 id="transaction-client-name"></h3>
+            <input type="number" id="transaction-amount" placeholder="0" pattern="[0-9]*">
+            <div class="modal-buttons">
+                <button id="add-debt-btn" class="btn btn-primary" style="background-color: var(--danger-color);">Deuda</button>
+                <button id="add-payment-btn" class="btn btn-primary" style="background-color: var(--success-color);">Pago</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="history-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h3 id="history-client-name"></h3>
+                <button id="delete-history-btn" class="btn btn-secondary" style="background-color: var(--danger-color);">Borrar Historial</button>
+            </div>
+            <div id="history-content"></div>
+        </div>
+    </div>
+
+    <div id="confirm-delete-modal" class="modal-overlay">
+        <div class="modal-content" style="text-align: center;">
+            <h3>¿Seguro que quieres eliminar a este cliente?</h3>
+            <p>Esta acción no se puede deshacer.</p>
+            <div class="modal-buttons">
+                <button id="cancel-delete" class="btn btn-secondary">Cancelar</button>
+                <button id="confirm-delete" class="btn btn-primary" style="background-color: var(--danger-color);">Aceptar Eliminación</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="context-menu">
+        <ul>
+            <li id="menu-history"><span class="menu-icon">📜</span>Historial de cliente</li>
+            <li id="menu-vip"><span class="menu-icon">⭐</span><span class="menu-text">Cliente VIP</span></li>
+            <li id="menu-delete"><span class="menu-icon">🗑️</span>Eliminar Cliente</li>
+        </ul>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
+
+    <!-- App Logic -->
+    <script src="./app.js"></script>
+
+</body>
+</html>
